@@ -43,6 +43,11 @@ app.get('/weather', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Backend server running on port ${PORT}`);
-});
+// Yeh Vercel par serverless function ki tarah chalne ke liye zaroori hai
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Backend server running on port ${PORT}`);
+    });
+}
+
+module.exports = app;
